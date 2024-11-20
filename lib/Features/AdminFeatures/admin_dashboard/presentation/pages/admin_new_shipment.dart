@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:skb_cwd_app/Features/AdminFeatures/admin_dasgboard/presentation/bloc/cubit/admin_cubit.dart';
-import 'package:skb_cwd_app/Features/AdminFeatures/admin_dasgboard/presentation/pages/admin_add_user_page.dart';
-import 'package:skb_cwd_app/constants/appcolors.dart';
+ import 'package:skb_cwd_app/constants/appcolors.dart';
 
 import 'package:skb_cwd_app/globalwidget/export.dart';
 
 import '../../../../../constants/utils/useful_methods.dart';
+import '../bloc/cubit/admin_cubit.dart';
+import 'admin_add_user_page.dart';
 
 
 ///////////page to display all shipment addmin has to approved or reject

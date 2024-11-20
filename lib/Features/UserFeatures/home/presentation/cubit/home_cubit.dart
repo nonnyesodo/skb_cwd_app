@@ -7,7 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:skb_cwd_app/Features/UserFeatures/home/data/remote/home_repo.dart';
 import 'package:skb_cwd_app/Features/UserFeatures/home/presentation/pages/user_home.dart';
 import 'package:skb_cwd_app/constants/utils/toast_helper.dart';
-import '../../../../AdminFeatures/admin_dasgboard/presentation/pages/admin_dashboard.dart';
+import '../../../../AdminFeatures/admin_dashboard/presentation/pages/admin_dashboard.dart';
 import '../../../auth/data/model/user_shipment_model.dart';
 import '../../../auth/presentation/pages/login_page.dart';
 
@@ -175,42 +175,8 @@ class HomeCubit extends Cubit<HomeState> {
     emit(HomeLoadingState());
     try {
       final response = await homeRepo.createShipment(
-          priorityLevel: priorityLevel,
-          shipmentMode: shipmentMode,
-          packageDescription: packageDescription,
-          numberOfPackages: numberOfPackages.text,
-          insurance: insurance,
-          weight: weight.text,
-          width: width.text,
-          height: height.text,
-          shipmentValue: shipmentValue.text,
-          shipmentContent: shipmentContent.text,
-          fragile: fragile,
-          hazardous: hazardous,
-          userPreferredPickupDatetime: userPreferredPickupDatetime,
-          userSpecialPickUpInstructions: userSpecialPickUpInstructions.text,
-          userName: userName,
-          userEmail: userEmail,
-          userMobile: userMobile,
-          userCountry: userCountry,
-          userPostalCode: userPostalCode.text,
-          receiverPreferredDatetime: receiverPreferredDeliveryDatetime,
-          receiverSpecialPickUpInstructions:
-              receiverSpecialDeliveryInstructions.text,
-          userLga: userLga,
-          userCity: userCity,
-          userState: userState,
-          userAddress: userAddress.text,
-          receiverName: receiverName.text,
-          receiverEmail: receiverEmail.text,
-          receiverMobile: receiverMobile.text,
-          receiverCountry: recieverCountry,
-          receiverPostalCode: recieverPostalCode.text,
-          receiverLga: receiverLga,
-          receiverCity: receiverCity,
-          receiverState: receiverState,
-          receiverAddress: receiverAddress.text,
-          shippingMethod: shippingMethod);
+      
+         );
       final body = jsonDecode(response.body);
       log("$body${response.statusCode}");
       if (response.statusCode == 200) {

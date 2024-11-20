@@ -13,99 +13,39 @@ class HomeRepo {
   }
 
   Future<Response> createShipment(
-      {priorityLevel,
-      shipmentMode,
-      packageDescription,
-      numberOfPackages,
-      insurance,
-      weight,
-      width,
-      height,
-      shipmentValue,
-      shipmentContent,
-      fragile,
-      hazardous,
-      userPreferredPickupDatetime,
-      userSpecialPickUpInstructions,
-      userName,
-      userEmail,
-      userMobile,
-      userCountry,
-      userPostalCode,
-      receiverPreferredDatetime,
-      receiverSpecialPickUpInstructions,
-      userLga,
-      userCity,
-      userState,
-      userAddress,
-      receiverName,
-      receiverEmail,
-      receiverMobile,
-      receiverCountry,
-      receiverPostalCode,
-      receiverLga,
-      receiverCity,
-      receiverState,
-      receiverAddress,
-      shippingMethod}) async {
+      { 
+      dropOffId,cargoDescription,modOfShipment
+    ,typesOfGoods  ,originZoneId ,destinationZoneId,itemName
+,quantity ,weight,destinationAddressId ,length,width,height,remarks,declaredValue ,originAddressId}) async {
     var body = {
-      "shipment_date": DateFormat('yyyy-MM-dd')
-          .format(DateTime.now().add(const Duration(days: 30)))
-          .toString(),
-      "shipment_mode": shipmentMode,
-      "courier_id": 1,
-      "priority_level": priorityLevel,
-
-      "package_description": packageDescription,
-      "number_of_packages": numberOfPackages,
+    'drop_off_point_id':dropOffId,"cargo_description":cargoDescription,
+    "mod_of_shipment": modOfShipment , "types_of_goods":typesOfGoods , "agent_code": "AGT123", "route_code": "RT123",
+  "route_type": "local",
+  "declaration": "Declared as $cargoDescription",
+  "origin_zone_id": originZoneId,
+  "destination_zone_id": destinationZoneId,"items": [
+    {
+      "item_name": itemName,
+      "quantity": quantity,
       "weight": weight,
-      // "length": length,
+      "length": length,
       "width": width,
       "height": height,
-      "shipment_value": shipmentValue,
-      "insurance": insurance,
-      "shipment_content": shipmentContent,
-      "fragile": fragile,
-      "hazardous": hazardous,
-      "addresses": [
-        {
-          "type": "Origin",
-          "name": userName,
-          "email": userEmail,
-          // "mobile_number": userMobile,
-          "mobile_number": "07037755663",
-
-          "preferred_datetime": userPreferredPickupDatetime,
-          "special_instructions": userSpecialPickUpInstructions,
-          "country": userCountry,
-          "state": userState,
-          "lga": userLga,
-          "city": userCity,
-          "street_address": userAddress,
-          "postal_code": userPostalCode
-        },
-        {
-          "type": "Destination",
-          "name": receiverName,
-          "email": receiverEmail,
-          "mobile_number": receiverMobile,
-          "preferred_datetime": receiverPreferredDatetime ?? '',
-          "special_instructions": receiverSpecialPickUpInstructions,
-          "country": receiverCountry,
-          "state": receiverState,
-          "lga": receiverLga,
-          "city": receiverCity,
-          "street_address": receiverAddress,
-          "postal_code": receiverPostalCode
-        }
-      ],
-      "shipping_method": shippingMethod,
-      "billing": {
-        "method": "Paypal",
-        "billing_address": "mddldd",
-        "coupon": "DISCOUNT2024"
-      }
-    };
+      "remarks": remarks,
+      "declared_value": declaredValue
+    },],"documents": [
+    {
+      "document_type": "Invoice",
+      "file": "/uploads/documents/invoice.pdf"
+    },
+    {
+      "document_type": "Customs Declaration",
+      "file": "/uploads/documents/customs_declaration.pdf"
+    }
+  ],
+  "origin_address_id": originAddressId,
+ "destination_address_id": destinationAddressId,
+  };
     log(body.toString());
     return await post(Uri.parse(ApiConstants.createShipmentUrl),
         headers: ApiHeaders.aunthenticatedHeader, body: jsonEncode(body));

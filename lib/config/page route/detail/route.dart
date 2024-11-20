@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:skb_cwd_app/Features/AdminFeatures/admin_dasgboard/presentation/pages/admin_new_shipment.dart';
-import 'package:skb_cwd_app/Features/UserFeatures/home/presentation/pages/create_shipment.dart';
-import '../../../Features/AdminFeatures/admin_dasgboard/presentation/pages/admin_add_user_page.dart';
-import '../../../Features/AdminFeatures/admin_dasgboard/presentation/pages/admin_approve_shipment.dart';
+ import 'package:skb_cwd_app/Features/UserFeatures/home/presentation/pages/create_shipment.dart';
+import '../../../Features/AdminFeatures/admin_dashboard/presentation/pages/admin_add_user_page.dart';
+import '../../../Features/AdminFeatures/admin_dashboard/presentation/pages/admin_approve_shipment.dart';
+import '../../../Features/AdminFeatures/admin_dashboard/presentation/pages/admin_new_shipment.dart';
 import '../../../Features/UserFeatures/auth/presentation/pages/login_page.dart';
 import '../../../Features/UserFeatures/auth/presentation/pages/register_page.dart';
 import '../../../Features/UserFeatures/home/presentation/pages/bottom_nav.dart';

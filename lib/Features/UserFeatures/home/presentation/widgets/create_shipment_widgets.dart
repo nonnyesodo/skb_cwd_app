@@ -8,7 +8,7 @@ import '../../../../../config/page route/page_route.dart';
 import '../../../../../constants/appcolors.dart';
 import '../../../../../constants/utils/useful_methods.dart';
 import '../../../../../globalwidget/export.dart';
-import '../../../../AdminFeatures/admin_dasgboard/presentation/pages/admin_new_shipment.dart';
+import '../../../../AdminFeatures/admin_dashboard/presentation/pages/admin_new_shipment.dart';
 import '../../../auth/presentation/bloc/cubit/auth_cubit.dart';
 import '../cubit/home_cubit.dart';
 

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:skb_cwd_app/Features/AdminFeatures/admin_dasgboard/presentation/pages/admin_add_user_page.dart';
-import 'package:skb_cwd_app/Features/UserFeatures/home/presentation/cubit/home_cubit.dart';
+ import 'package:skb_cwd_app/Features/UserFeatures/home/presentation/cubit/home_cubit.dart';
 import 'package:skb_cwd_app/constants/appcolors.dart';
 import 'package:skb_cwd_app/globalwidget/export.dart';
 import '../../../../../constants/utils/useful_methods.dart';
-import '../../../../AdminFeatures/admin_dasgboard/presentation/pages/admin_new_shipment.dart';
+import '../../../../AdminFeatures/admin_dashboard/presentation/pages/admin_add_user_page.dart';
+import '../../../../AdminFeatures/admin_dashboard/presentation/pages/admin_new_shipment.dart';
 
 ////page the disply all shipment created by the user 
 class UserShipmentHistory extends StatelessWidget {

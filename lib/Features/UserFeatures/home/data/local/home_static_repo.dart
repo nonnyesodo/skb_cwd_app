@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:skb_cwd_app/config/page%20route/detail/route_name.dart';
 import 'package:skb_cwd_app/constants/appcolors.dart';
 
-import '../../../../AdminFeatures/admin_dasgboard/data/local/admin_static_repo.dart';
+import '../../../../AdminFeatures/admin_dashboard/data/local/admin_static_repo.dart';
 
 class HomeStaticRepo {
   static List<BottomNavModel> bottomNavLabel = [

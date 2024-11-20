@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:skb_cwd_app/Features/AdminFeatures/admin_dasgboard/presentation/bloc/cubit/admin_cubit.dart';
-import 'package:skb_cwd_app/constants/appcolors.dart';
+ import 'package:skb_cwd_app/constants/appcolors.dart';
 import '../../../../../config/page route/page_route.dart';
 import '../../../../../globalwidget/export.dart';
 import '../../data/local/admin_static_repo.dart';
+import '../bloc/cubit/admin_cubit.dart';
 
 
 

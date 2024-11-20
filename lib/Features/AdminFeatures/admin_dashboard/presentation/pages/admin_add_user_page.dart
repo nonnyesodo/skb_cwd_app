@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:skb_cwd_app/Features/AdminFeatures/admin_dasgboard/presentation/bloc/cubit/admin_cubit.dart';
-import 'package:skb_cwd_app/config/page%20route/detail/route_name.dart';
+ import 'package:skb_cwd_app/config/page%20route/detail/route_name.dart';
 import 'package:skb_cwd_app/constants/appcolors.dart';
 
 import '../../../../../constants/utils/auth_validator.dart';
 import '../../../../../globalwidget/export.dart';
+import '../bloc/cubit/admin_cubit.dart';
 
 /////the page for admin to create and delete users
 

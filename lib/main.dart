@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_portal/flutter_portal.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:skb_cwd_app/Features/AdminFeatures/admin_dasgboard/data/remote/admin_repo.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart'; 
 import 'package:skb_cwd_app/Features/UserFeatures/auth/data/repository/auth_repo.dart';
 import 'package:skb_cwd_app/Features/UserFeatures/auth/presentation/bloc/cubit/auth_cubit.dart';
-import 'Features/AdminFeatures/admin_dasgboard/presentation/bloc/cubit/admin_cubit.dart';
+import 'Features/AdminFeatures/admin_dashboard/data/remote/admin_repo.dart';
+import 'Features/AdminFeatures/admin_dashboard/presentation/bloc/cubit/admin_cubit.dart';
 import 'Features/UserFeatures/home/data/remote/home_repo.dart';
 import 'Features/UserFeatures/home/presentation/cubit/home_cubit.dart';
 import 'config/page route/page_route.dart';
