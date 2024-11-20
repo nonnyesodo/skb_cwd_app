@@ -1,8 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
-
-import 'package:http/http.dart';
-import 'package:intl/intl.dart';
+import 'package:http/http.dart'; 
 
 import '../../../../../constants/api_constants.dart';
 
@@ -64,6 +62,10 @@ class HomeRepo {
 
   Future<Response> confirmShipment() async {
     return await post(Uri.parse(ApiConstants.userConfirmShipmentUrl),
+        headers: ApiHeaders.aunthenticatedHeader);
+  }
+  Future<Response> fetchShipmentZones() async {
+    return await get(Uri.parse(ApiConstants.fetchShipmentZoneUrl),
         headers: ApiHeaders.aunthenticatedHeader);
   }
 }

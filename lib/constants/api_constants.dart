@@ -11,6 +11,7 @@ class ApiConstants {
   static const String userShipmentUrl = '$baseUrl/shipment';
   static const String userComplaintUrl = '$baseUrl/user/complain';
   static const String userConfirmShipmentUrl = '$baseUrl/shipment/confirm';
+  static const String fetchShipmentZoneUrl = '$baseUrl/shipment/zone';
   //////Admin url
   static const String adminCreateUserUrl = '$baseUrl/admin/user';
   static String adminDeleteUserUrl(userId) => '$baseUrl/admin/user/$userId';

@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:skb_cwd_app/Features/UserFeatures/home/data/model/shipmennt_zone_model.dart';
 import 'package:skb_cwd_app/Features/UserFeatures/home/data/remote/home_repo.dart';
 import 'package:skb_cwd_app/Features/UserFeatures/home/presentation/pages/user_home.dart';
 import 'package:skb_cwd_app/constants/utils/toast_helper.dart';
@@ -17,6 +18,7 @@ class HomeCubit extends Cubit<HomeState> {
   HomeRepo homeRepo;
   HomeCubit(this.homeRepo) : super(HomeInitial()) {
     fetchUserShipments();
+    fetchShipmentZone();
   }
 
 /////change bottom nav according to who is logedin 
@@ -56,6 +58,27 @@ class HomeCubit extends Cubit<HomeState> {
       if (response.statusCode == 200) {
         for (var ship in body['data']) {
           userShipments.add(UserShipmentModel.fromJson(ship));
+        }
+        emit(HomeLoadedState());
+      } else {
+        ToastMessage.showSuccessToast(message: body['message']);
+        emit(HomeErrorState());
+      }
+    } catch (e) {
+      log(e.toString());
+      emit(HomeErrorState());
+    }
+  }
+  List<ShipmentZoneModel> shipmentZOnes = [];
+  fetchShipmentZone() async {
+    emit(HomeLoadingState());
+    try {
+      final response = await homeRepo.fetchShipmentZones();
+      final body = jsonDecode(response.body);
+      log(response.body.toString());
+      if (response.statusCode == 200) {
+          for (var zone in body['data']) {
+          shipmentZOnes.add(ShipmentZoneModel.fromJson(zone));
         }
         emit(HomeLoadedState());
       } else {
