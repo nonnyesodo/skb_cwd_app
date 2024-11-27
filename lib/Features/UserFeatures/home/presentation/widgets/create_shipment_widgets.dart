@@ -10,6 +10,7 @@ import '../../../../../constants/utils/useful_methods.dart';
 import '../../../../../globalwidget/export.dart';
 import '../../../../AdminFeatures/admin_dashboard/presentation/pages/admin_new_shipment.dart';
 import '../../../auth/presentation/bloc/cubit/auth_cubit.dart';
+import '../../data/local/home_static_repo.dart';
 import '../cubit/home_cubit.dart';
 
 class ShipmentSummaryModalsheet extends StatelessWidget {
@@ -149,51 +150,41 @@ class _ShipperDetailPageState extends State<ShipperDetailPage> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            ApptextField(
-                controller: watchHome.userAddress,
-                title: 'Customer Name',
-                validator: (value) => AuthValidator.validateAnyField(
-                    field: 'Name', value: value!),
-                onChange: (p0) {
-                  readHome.changeState();
-                },
-                prefixIcon: Icons.person),
-            20.verticalSpace,
-            ApptextField(
-                controller: watchHome.userAddress,
-                title: 'Shipper Code',
-                validator: (value) => AuthValidator.validateAnyField(
-                    field: 'shipper Code', value: value!),
-                onChange: (p0) {
-                  readHome.changeState();
-                },
-                prefixIcon: Icons.person),
-            20.verticalSpace,
             DropdownWidget(
-                values: NigerianStatesAndLGA.allStates,
+                values: HomeStaticRepo.shipmentZOnes
+                    .map((e) => e.origin ?? '')
+                    .toList(),
                 onSelected: (value) {
-                  watchHome.userState = value ?? '';
+                  watchHome.originZone = value ?? '';
                   readHome.changeState();
-                  log(value.toString());
                 },
                 title: 'Origin Zone',
+                validator: (v) => (v!.isEmpty) ? 'select origin Zone' : null,
                 prefixIcon: Icons.location_pin,
-                hintText: watchHome.userState == ''
-                    ? "Select State"
-                    : watchHome.userState),
+                hintText: watchHome.originZone == ''
+                    ? "Select OriginZone"
+                    : watchHome.originZone),
             20.verticalSpace,
-            DropdownWidget(
-                values: NigerianStatesAndLGA.allStates,
-                onSelected: (value) {
-                  watchHome.receiverCity = value ?? '';
-                  readHome.changeState();
-                  log(value.toString());
-                },
-                title: 'Destination Zone',
-                prefixIcon: Icons.location_pin,
-                hintText: watchHome.receiverCity == ''
-                    ? "Select Destination"
-                    : watchHome.userState),
+            watchHome.originZone != ''
+                ? DropdownWidget(
+                    values: HomeStaticRepo.shipmentZOnes
+                        .where((e) =>
+                            e.origin.toString() ==
+                            watchHome.originZone.toString())
+                        .map((zone) => zone.destination ?? '')
+                        .toList(),
+                    validator: (v) =>
+                        (v!.isEmpty) ? 'select destination Zone' : null,
+                    onSelected: (value) {
+                      watchHome.destinationZone = value ?? '';
+                      readHome.changeState();
+                    },
+                    title: 'Destination Zone',
+                    prefixIcon: Icons.location_pin,
+                    hintText: watchHome.destinationZone == ''
+                        ? "Select Destination"
+                        : watchHome.destinationZone)
+                : const SizedBox.shrink(),
             20.verticalSpace,
             DropdownWidget(
                 values: const [
@@ -209,6 +200,8 @@ class _ShipperDetailPageState extends State<ShipperDetailPage> {
                   readHome.changeState();
                   log(value.toString());
                 },
+                validator: (v) =>
+                    (v!.isEmpty) ? 'select Mode of Shipment' : null,
                 title: 'Mode of Shipment',
                 prefixIcon: Icons.local_car_wash,
                 hintText: watchHome.shipmentMode),
@@ -218,19 +211,23 @@ class _ShipperDetailPageState extends State<ShipperDetailPage> {
                   'Fragile Goods',
                 ],
                 onSelected: (value) {
-                  watchHome.shipmentMode = value ?? '';
+                  watchHome.typesOfGoods = value ?? '';
                   readHome.changeState();
-                  log(value.toString());
                 },
                 title: 'Type of Goods',
+                validator: (v) => (watchHome.typesOfGoods == '')
+                    ? 'select type of goods'
+                    : null,
                 prefixIcon: Icons.local_car_wash,
-                hintText: watchHome.shipmentMode),
-            20.verticalSpace, 
+                hintText: watchHome.typesOfGoods),
+            20.verticalSpace,
             ApptextField(
                 controller: watchHome.shipmentContent,
                 title: 'Cargo Description',
                 hintText: ' Short description of the items being shipped',
                 prefixIcon: Icons.assignment,
+                validator: (v) =>
+                    (v!.isEmpty) ? 'select cargo description' : null,
                 onChange: (p0) {
                   readHome.changeState();
                 }),
@@ -238,7 +235,9 @@ class _ShipperDetailPageState extends State<ShipperDetailPage> {
             Appbutton(
                 label: 'Next',
                 onTap: () {
-                  context.read<HomeCubit>().nextVerificationStage();
+                  if (formKey.currentState?.validate() ?? false) {
+                    context.read<HomeCubit>().nextVerificationStage();
+                  }
                 }),
           ],
         ),
@@ -268,7 +267,7 @@ class AddressDetailPage extends StatelessWidget {
           ),
           20.verticalSpace,
           ApptextField(
-              controller: watchHome.receiverEmail,
+              controller: watchHome.receiverAddress,
               title: 'Destination Address',
               prefixIcon: Icons.location_pin,
               onChange: (p0) {
@@ -289,7 +288,7 @@ class AddressDetailPage extends StatelessWidget {
               hintText: watchHome.shipmentMode),
           20.verticalSpace,
           ApptextField(
-              controller: watchHome.recieverPostalCode,
+              // controller: watchHome.recieverPostalCode,
               title: 'Agent Code',
               onChange: (p0) {
                 readHome.changeState();
@@ -299,8 +298,6 @@ class AddressDetailPage extends StatelessWidget {
           Appbutton(
               label: 'Next',
               onTap: () {
-                if (readHome.receiverAddress.text.trim().isNotEmpty &&
-                    readHome.receiverState != '') {}
                 context.read<HomeCubit>().nextVerificationStage();
               }),
           30.verticalSpace,

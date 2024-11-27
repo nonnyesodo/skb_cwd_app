@@ -43,6 +43,36 @@ class HomeRepo {
   ],
   "origin_address_id": originAddressId,
  "destination_address_id": destinationAddressId,
+ "addresses": [
+    {
+       "type": "Origin",
+       "name": "John Doe",
+      "email": "john.doe@example.com",
+       "phone": "1234567890",
+      "country": "USA",
+      "state": "California",
+      "lga": "N/A",
+      "city": "Los Angeles",
+       "street": "123 Elm Street",
+       "latitude": 34.0522,
+       "longitude": -118.2437,
+      "postal_code": "90001"
+    },
+    {
+      "type": "Destination",
+      "name": "Jane Smith",
+      "email": "jane.smith@example.com",
+      "phone": "0987654321",
+      "country": "Canada",
+      "state": "Ontario",
+      "lga": "N/A",
+      "city": "Toronto",
+      "street": "456 Oak Avenue",
+      "latitude": 43.6532,
+      "longitude": -79.3832,
+      "postal_code": "M5A 1A1"
+    }
+  ]
   };
     log(body.toString());
     return await post(Uri.parse(ApiConstants.createShipmentUrl),

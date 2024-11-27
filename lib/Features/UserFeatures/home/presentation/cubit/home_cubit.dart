@@ -18,7 +18,8 @@ class HomeCubit extends Cubit<HomeState> {
   HomeRepo homeRepo;
   HomeCubit(this.homeRepo) : super(HomeInitial()) {
     fetchUserShipments();
-    fetchShipmentZone();
+    // fetchShipmentZone();
+   
   }
 
 /////change bottom nav according to who is logedin 
@@ -69,27 +70,33 @@ class HomeCubit extends Cubit<HomeState> {
       emit(HomeErrorState());
     }
   }
-  List<ShipmentZoneModel> shipmentZOnes = [];
-  fetchShipmentZone() async {
-    emit(HomeLoadingState());
-    try {
-      final response = await homeRepo.fetchShipmentZones();
-      final body = jsonDecode(response.body);
-      log(response.body.toString());
-      if (response.statusCode == 200) {
-          for (var zone in body['data']) {
-          shipmentZOnes.add(ShipmentZoneModel.fromJson(zone));
-        }
-        emit(HomeLoadedState());
-      } else {
-        ToastMessage.showSuccessToast(message: body['message']);
-        emit(HomeErrorState());
-      }
-    } catch (e) {
-      log(e.toString());
-      emit(HomeErrorState());
-    }
-  }
+//   List<ShipmentZoneModel> shipmentZOnes = [
+//             ShipmentZoneModel(destination:"London (UK)",origin:'Ikeja (NG)' ,routeCode: 'NGALKJ1'
+//  ),ShipmentZoneModel(destination:"Johannesburg (SA)",origin:'Abuja (NG)' ,routeCode: 'NGJOH1')];
+//   // fetchShipmentZone() async {
+  //   emit(HomeLoadingState());
+   
+//     try {
+//       final response = await homeRepo.fetchShipmentZones();
+//       final body = jsonDecode(response.body);
+//       log(response.body.toString());
+//       if (response.statusCode == 200) {
+//           for (var zone in body['data']) {
+//           shipmentZOnes.addAll( [
+//             ShipmentZoneModel(destination:"London (UK)",origin:'Ikeja (NG)' ,routeCode: 'NGALKJ1'
+//  ),ShipmentZoneModel(destination:"Johannesburg (SA)",origin:'Abuja (NG)' ,routeCode: 'NGJOH1')
+//           ]);
+//         }
+//         emit(HomeLoadedState());
+//       } else {
+//         ToastMessage.showSuccessToast(message: body['message']);
+//         emit(HomeErrorState());
+//       }
+//     } catch (e) {
+//       log(e.toString());
+//       emit(HomeErrorState());
+//     }
+  // }
 
 /// user cancel shipment and update ui
   cancelUserShipments({shipmentId}) async {
@@ -158,35 +165,32 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   String priorityLevel = '';
+  String typesOfGoods= '';
   String shipmentMode = '';
   String packageDescription = '';
   String carrier = '';
   String shippingMethod = '';
   String userCountry = '';
   String userState = '';
+  String originZone = '';
+  String destinationZone = '';
   String userCity = '';
   String userLga = '';
   String recieverCountry = '';
   String receiverLga = '';
   String receiverState = '';
-  String receiverCity = '';
-  DateTime? userPreferredPickupDatetime;
-  DateTime? receiverPreferredDeliveryDatetime;
+  String receiverCity = ''; 
   bool insurance = false;
   bool hazardous = false;
   bool fragile = false;
   final numberOfPackages = TextEditingController();
   final shipmentValue = TextEditingController();
-  final shipmentContent = TextEditingController();
-  final userSpecialPickUpInstructions = TextEditingController();
-  final receiverSpecialDeliveryInstructions = TextEditingController();
+  final shipmentContent = TextEditingController(); 
   final userPostalCode = TextEditingController();
   final userAddress = TextEditingController();
   final receiverName = TextEditingController();
-  final receiverEmail = TextEditingController();
   final receiverMobile = TextEditingController();
-  final receiverAddress = TextEditingController();
-  final recieverPostalCode = TextEditingController();
+  final receiverAddress = TextEditingController(); 
   final height = TextEditingController();
   final width = TextEditingController();
   final weight = TextEditingController();

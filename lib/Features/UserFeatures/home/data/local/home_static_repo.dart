@@ -3,6 +3,7 @@ import 'package:skb_cwd_app/config/page%20route/detail/route_name.dart';
 import 'package:skb_cwd_app/constants/appcolors.dart';
 
 import '../../../../AdminFeatures/admin_dashboard/data/local/admin_static_repo.dart';
+import '../model/shipmennt_zone_model.dart';
 
 class HomeStaticRepo {
   static List<BottomNavModel> bottomNavLabel = [
@@ -26,6 +27,15 @@ class HomeStaticRepo {
         label: 'New Shipment\nRequest',
         page: RouteName.createShipment,
         color: Colors.blueGrey)
+  ];
+
+  static List<ShipmentZoneModel> shipmentZOnes = [
+    ShipmentZoneModel(
+        destination: "London (UK)", origin: 'Ikeja (NG)', routeCode: 'NGALKJ1'),
+    ShipmentZoneModel(
+        destination: "Johannesburg (SA)",
+        origin: 'Abuja (NG)',
+        routeCode: 'NGJOH1')
   ];
 }
 
